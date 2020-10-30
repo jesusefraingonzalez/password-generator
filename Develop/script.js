@@ -3,15 +3,25 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword(event) {
+
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
+  checkLength();
   checkChar();
   passwordText.value = password;
 
 }
 
 function generatePassword() {
+  var alphabet = ["abcdefghijklmnpoqrstuvwxyz"];
+  var specialChar = ["!@#$%^&*()-_=+"];
 
+  //produces a random character in alphabet
+  // var randomChar = alphabet[Math.floor(Number.random() * alphabet.length)];
+
+}
+function randomChar(arr){
+  return arr[Math.floor(Number.random() * arr.length)];
 }
 
 function checkLength() {
@@ -28,6 +38,7 @@ function checkLength() {
   }
 }
 
+//function to check the characters to be used for password, returns boolList array
 function checkChar() {
   // initialize character types and if they are true
   var charTypes = [
@@ -60,8 +71,10 @@ function checkChar() {
   }
   else {
     console.log("Array is true");
+    return boolList;
   }
 }
+
 
 
 
