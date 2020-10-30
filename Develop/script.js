@@ -20,7 +20,9 @@ function generatePassword() {
   // var randomChar = alphabet[Math.floor(Number.random() * alphabet.length)];
 
 }
-function randomChar(arr){
+
+// function to get random element from an array
+function randomChar(arr) {
   return arr[Math.floor(Number.random() * arr.length)];
 }
 
