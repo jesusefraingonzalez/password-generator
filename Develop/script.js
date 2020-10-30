@@ -40,14 +40,32 @@ function checkChar() {
   // initialize empty array to store boolean values tied to charTypes by index
   var boolList = [];
 
-  
+  //prompt user for each charType, store response in boolList array
   charTypes.forEach(function (charType, index) {
     var charBool = confirm("Include " + charType + " characters?");
-    boolList.push(charBool);
+    boolList.push(charBool); //push result of confirm to boolean array
     console.log(boolList[index]);
   })
 
+  // check if all values are false
+  var falseArray = boolList.every(function (element) {
+    return element === false;
+  })
+
+  // if array is false, then prompt user to select at least one character type and call function again
+  if (falseArray) {
+    console.log("Array is false");
+    alert("Please select at least one character type");
+    checkChar();
+  }
+  else {
+    console.log("Array is true");
+  }
 }
+
+
+
+
 
 
 // Add event listener to generate button
