@@ -5,7 +5,7 @@ var generateBtn = document.querySelector("#generate");
 function writePassword(event) {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  checkChar();
   passwordText.value = password;
 
 }
@@ -29,6 +29,7 @@ function checkLength() {
 }
 
 function checkChar() {
+  // initialize character types and if they are true
   var charTypes = [
     "lowercase",
     "uppercase",
@@ -36,12 +37,18 @@ function checkChar() {
     "special"
   ];
 
-  var isLowercase = true;
-  var isUppercase = true;
-  var isNumeric = true;
-  var isSpecial = true;
+  // initialize empty array to store boolean values tied to charTypes by index
+  var boolList = [];
+
+  
+  charTypes.forEach(function (charType, index) {
+    var charBool = confirm("Include " + charType + " characters?");
+    boolList.push(charBool);
+    console.log(boolList[index]);
+  })
 
 }
+
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
