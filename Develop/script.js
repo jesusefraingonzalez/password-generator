@@ -1,18 +1,48 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+// password object with length and character type bools
+var myPassword = {
+  length: 8,
+  lowercase: false,
+  uppercase: false,
+  numeric: false,
+  special: false,
+
+  setLength: function () {
+    //get desired length of password
+    var charLength = prompt("How long do you want your password to be? (8-128 characters)");
+    // see if length is acceptable
+    if (charLength >= 8 && charLength <= 128) {
+      alert("Password length is good!");
+      this.length = charLength;
+    }
+    else {
+      alert("Password length is not valid, password must be between 8 and 128 characters")
+      setLength();
+    }
+  },
+
+  setChar: function(arr){
+    
+  }
+
+};
+
+passArray[0][1] = setLength();
+console.log(passArray);
 
 // Write password to the #password input
 function writePassword(event) {
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  checkLength();
-  checkChar();
+  var passwordLength = setLength();
+  var includeChar = checkChar();
   passwordText.value = password;
 
 }
 
-function generatePassword() {
+function generatePassword(arr) {
   var alphabet = ["abcdefghijklmnpoqrstuvwxyz"];
   var specialChar = ["!@#$%^&*()-_=+"];
 
@@ -26,19 +56,8 @@ function randomChar(arr) {
   return arr[Math.floor(Number.random() * arr.length)];
 }
 
-function checkLength() {
-  //get desired length of password
-  var charLength = prompt("How long do you want your password to be? (8-128 characters)");
+// checks desired length of the password
 
-  if (charLength >= 8 && charLength <= 128) {
-    alert("Password length is good!");
-    return charLength;
-  }
-  else {
-    alert("Password length is not valid, password must be between 8 and 128 characters")
-    checkLength();
-  }
-}
 
 //function to check the characters to be used for password, returns boolList array
 function checkChar() {
@@ -50,17 +69,11 @@ function checkChar() {
     ["special", true]
   ];
 
-  // initialize empty array to store boolean values tied to charTypes by index
-  // var boolList = [true];
-
   //prompt user for each charType, store response in boolList array
   charTypes.forEach(function (charType, index) {
     var charBool = confirm("Include " + charType[index] + " characters?");
-    // boolList.push(charBool); //push result of confirm to boolean array
-    // console.log(boolList[index]);
     charType[1] = charBool;
     console.log(charType[0] + ":" + charType[1]);
-
   })
 
   // check if all values are false
@@ -75,8 +88,8 @@ function checkChar() {
     checkChar();
   }
   else {
-    console.log("Array is true");
-    return boolList;
+    console.log("At least one criteria is selcted");
+    return charTypes;
   }
 }
 
