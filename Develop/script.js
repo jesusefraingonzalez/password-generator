@@ -22,8 +22,19 @@ var myPassword = {
     }
   },
 
-  setChar: function(arr){
-    
+  setChar: function (arr) {
+    this.lowercase = arr[arr.indexOf("lowercase")][1];
+    this.uppercase = arr[arr.indexOf("uppercase")][1];
+    this.numeric = arr[arr.indexOf("numeric")][1];
+    this.special = arr[arr.indexOf("special")][1];
+  },
+
+  logObj: function () {
+    console.log("this.length" + this.length);
+    console.log("this.lowercase" + this.lowercase);
+    console.log("this.uppercase" + this.uppercase);
+    console.log("this.numeric" + this.numeric);
+    console.log("this.special" + this.special);
   }
 
 };
@@ -31,6 +42,13 @@ var myPassword = {
 passArray[0][1] = setLength();
 console.log(passArray);
 
+
+
+
+
+
+
+//functions
 // Write password to the #password input
 function writePassword(event) {
 
