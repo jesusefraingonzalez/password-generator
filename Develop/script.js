@@ -1,5 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
+
 // password object with length and character type bools
 var myPassword = {
   length: 8,
@@ -22,25 +23,25 @@ var myPassword = {
     }
   },
 
-  setChar: function (arr) {
-    this.lowercase = arr[arr.indexOf("lowercase")][1];
-    this.uppercase = arr[arr.indexOf("uppercase")][1];
-    this.numeric = arr[arr.indexOf("numeric")][1];
-    this.special = arr[arr.indexOf("special")][1];
-  },
+  setChar: function () {
+    this.lowercase = confirm("Include lowercase characters?");
+    this.uppercase = confirm("Include uppercase characters?");
+    this.numeric = confirm("Include numeric characters?");
+    this.special = confirm("Include special characters?");
 
-  logObj: function () {
-    console.log("this.length" + this.length);
-    console.log("this.lowercase" + this.lowercase);
-    console.log("this.uppercase" + this.uppercase);
-    console.log("this.numeric" + this.numeric);
-    console.log("this.special" + this.special);
-  }
+    if (!this.lowercase && !this.uppercase && !this.numeric && !this.special) {
+      alert("Please select at least one character type");
+      this.setChar();
+    }
+    else {
+      alert("At least one criteria is selected");
+    }
+  },
 
 };
 
-passArray[0][1] = setLength();
-console.log(passArray);
+
+
 
 
 
@@ -54,8 +55,8 @@ function writePassword(event) {
 
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-  var passwordLength = setLength();
-  var includeChar = checkChar();
+  // var passwordLength = setLength();
+  //var includeChar = checkChar();
   passwordText.value = password;
 
 }
@@ -76,46 +77,11 @@ function randomChar(arr) {
 
 // checks desired length of the password
 
-
-//function to check the characters to be used for password, returns boolList array
-function checkChar() {
-  // initialize character types and if they are true
-  var charTypes = [
-    ["lowercase", true],
-    ["uppercase", true],
-    ["numeric", true],
-    ["special", true]
-  ];
-
-  //prompt user for each charType, store response in boolList array
-  charTypes.forEach(function (charType, index) {
-    var charBool = confirm("Include " + charType[index] + " characters?");
-    charType[1] = charBool;
-    console.log(charType[0] + ":" + charType[1]);
-  })
-
-  // check if all values are false
-  var falseArray = charTypes.every(function (element) {
-    return element[1] === false;
-  })
-
-  // if array is false, then prompt user to select at least one character type and call function again
-  if (falseArray) {
-    console.log("Array is false");
-    alert("Please select at least one character type");
-    checkChar();
-  }
-  else {
-    console.log("At least one criteria is selcted");
-    return charTypes;
-  }
-}
-
-
-
-
-
-
-
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+console.log(myPassword);
+myPassword.setChar();
+console.log(myPassword);
+
+
+
