@@ -14,6 +14,13 @@ Simple card layout. Button to begin password generation process. Alerts and conf
 ## Files and Directory
 * password-generator
     * Assets
+        * screen1.png
+        * screen2.png
+        * screen3.png
+        * screen4.png
+        * screen5.png
+        * screen6.png
+        * screen7.png
     * Develop
         * index.html
         * script.js
