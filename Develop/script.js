@@ -17,6 +17,7 @@ function writePassword(event) {
 }
 
 function generatePassword() {
+  // char lists
   var alphabet = "abcdefghijklmnpoqrstuvwxyz"; // alphabet chars
   var special = "!@#$%^&*()-_=+"; // special chars
   var numbers = "0123456789"; //number chars
