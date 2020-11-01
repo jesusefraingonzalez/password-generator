@@ -9,10 +9,20 @@ A password generating applet to create a secure password using user selected cri
 3. Copy and paste your password
 
 ## Design
+Simple card layout. Button to begin password generation process. Alerts and confirms to prompt user for desired password criteria. 
 
 ## Files and Directory
+* password-generator
+    * Assets
+    * Develop
+        * index.html
+        * script.js
+        * alt-script.js
+        * style.css
+    * README.md
+    * todo.md
 
 ## Link
-
+[Link to Live Website](https://jesusefraingonzalez.github.io/password-generator)
 ## ScreenShots
 
