@@ -24,5 +24,13 @@ Simple card layout. Button to begin password generation process. Alerts and conf
 
 ## Link
 [Link to Live Website](https://jesusefraingonzalez.github.io/password-generator)
+
 ## ScreenShots
+![Password Generator](Assets/screen1.png)
+![Length Checker](Assets/screen2.png)
+![Confirm Lowercase](Assets/screen3.png)
+![Confirm Uppercase](Assets/screen4.png)
+![Confrim Numeric](Assets/screen5.png)
+![Confirm Special](Assets/screen6.png)
+![Produced Password](Assets/screen7.png)
 
