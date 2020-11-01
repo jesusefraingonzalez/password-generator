@@ -2,100 +2,83 @@
 var generateBtn = document.querySelector("#generate");
 
 //functions
-// function to get random element from an array
-function randomChar(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
+
 // Write password to the #password input
 function writePassword(event) {
-
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-  passwordText.value = password;
-
-
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+    passwordText.value = password;
 }
 
 function generatePassword() {
-  // char lists
-  var alphabet = "abcdefghijklmnpoqrstuvwxyz"; // alphabet chars
-  var special = "!@#$%^&*()-_=+"; // special chars
-  var numbers = "0123456789"; //number chars
-  var availChar = ""; // available characters for the password
+    // password
+    var myPassword = "";
 
-  // password object with length and character type bools
-  var myPassword = {
-    length: 8,
-    lowercase: false,
-    uppercase: false,
-    numeric: false,
-    special: false,
-    actualPass: "",
+    // char lists
+    var alphabet = "abcdefghijklmnpoqrstuvwxyz"; // alphabet chars
+    var special = "!@#$%^&*()-_=+"; // special chars
+    var numbers = "0123456789"; //number chars
+    var availChar = ""; // available characters for the password
 
-    setLength: function () {
-      //get desired length of password
-      var charLength = prompt("How long do you want your password to be? (8-128 characters)");
-      // see if length is acceptable
-      if (charLength >= 8 && charLength <= 128) {
-        alert("Password length is good!");
-        this.length = charLength;
-      }
-      else {
-        alert("Password length is not valid, password must be between 8 and 128 characters")
-        this.setLength();
-      }
-    },
+    // password criteria
+    while (availChar === "") {
+        var isLowercase = confirm("Include lowercase characters?");
+        var isUppercase = confirm("Include uppercase characters?");
+        var isSpecial = confirm("Include special characters?");
+        var isNumber = confirm("Include number characters?");
+        
+        //add relevant chars to chars available for password
+        if (isLowercase) {
+            availChar += alphabet;
+        }
+        if (isUppercase) {
+            availChar += alphabet.toUpperCase();
+        }
+        if (isNumber) {
+            availChar += numbers;
+        }
+        if (isSpecial) {
+            availChar += special;
+        }
 
-    // prompt criteria for chars
-    setChar: function () {
-      this.lowercase = confirm("Include lowercase characters?");
-      this.uppercase = confirm("Include uppercase characters?");
-      this.numeric = confirm("Include numeric characters?");
-      this.special = confirm("Include special characters?");
+        // validates that at least one criteria is selected
+        if(availChar === ""){
+            alert("Please select at least one criteria");
+        }
+    }
+    
+    //sets password length
+    var length = setLength();
 
-      if (!this.lowercase && !this.uppercase && !this.numeric && !this.special) {
-        alert("Please select at least one character type");
-        this.setChar();
-      }
-      else {
-        alert("At least one criteria is selected");
-      }
-    },
+    //generates the password of given length using available chars
+    for (var i = 0; i < length; i++) {
+        myPassword += randomChar(availChar);
+    }
 
-    generate: function (arr) {
-      for (var i = 0; i < this.length; i++) {
-        this.actualPass += randomChar(arr);
-        console.log(this.actualPass);
-      }
-    },
-  };
-
-  myPassword.setLength();
-  myPassword.setChar();
-
-
-  if (myPassword.lowercase) {
-    availChar += alphabet;
-  }
-  if (myPassword.uppercase) {
-    availChar += alphabet.toUpperCase();
-  }
-  if (myPassword.numeric) {
-    availChar += numbers;
-  }
-  if (myPassword.special) {
-    availChar += special;
-  }
-
-  console.log(availChar);
-  myPassword.generate(availChar);
-  console.log(myPassword);
-  return myPassword.actualPass;
+    // console.log(availChar);
+    // console.log(myPassword);
+    return myPassword;
 }
 
+//sets password length
+function setLength() {
+    var charLength = parseInt(prompt("How long do you want your password to be? (8-128 characters)"));
+    // see if length is acceptable
+    if (charLength >= 8 && charLength <= 128) {
+        alert("Password length is valid!");
+        return charLength;
+    }
+    // error message if length is unacceptable
+    else {
+        alert("Password length is not valid. Password must be between 8 and 128 characters")
+        setLength();
+    }
+}
 
+// function to get random element from an array
+function randomChar(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
